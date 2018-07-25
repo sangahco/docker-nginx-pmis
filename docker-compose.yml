@@ -1,0 +1,60 @@
+version: "2"
+
+services:
+  was:
+    image: dev.sangah.com:5043/stnd-pmis
+    volumes:
+    - app:/usr/local/webapp
+    - tmp:/tmp
+    environment: 
+    - DB_URL
+    - DB_PASSWORD
+    - DB_USERNAME
+    - "system.upload.handler=nginx"
+
+  # was2:
+  #   image: dev.sangah.com:5043/stnd-pmis
+  #   volumes:
+  #   - app:/usr/local/webapp
+  #   - tmp:/tmp
+  #   environment: 
+  #   - DB_URL
+  #   - DB_PASSWORD
+  #   - DB_USERNAME
+  #   - "system.upload.handler=nginx"
+
+  nginx:
+    build: nginx
+    image: pmis-nginx
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - app:/var/www
+    - $SSL_CERT:/usr/share/nginx/ssl/nginx.crt
+    - $SSL_KEY:/usr/share/nginx/ssl/nginx.key
+    environment: 
+    - SSL_ENABLED
+
+  livechat:
+    image: livechat
+    environment: 
+    - CLIENT_AUTH_ENABLED=true
+    - CLIENT_AUTH_HOST=nginx
+    - CLIENT_AUTH_PATH=/
+
+  upload:
+    image: sangah/pmis-fileupload
+    volumes:
+    - tmp:/tmp
+    - ngx:/etc/nginx/www
+
+  php:
+    image: php:5.6-fpm
+    volumes:
+    - ngx:/etc/nginx/www
+
+volumes:
+  app:
+  tmp:
+  ngx:

@@ -1,0 +1,11 @@
+server {
+    listen 80 default_server;
+
+    # Redirect all HTTP requests to HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+
+    ssl_certificate         /usr/share/nginx/ssl/nginx.crt;
+    ssl_certificate_key     /usr/share/nginx/ssl/nginx.key;
+}

@@ -1,0 +1,6 @@
+set $upload_upstream upload:8180;
+
+location /upload {
+    proxy_pass http://$upload_upstream;
+    include conf.d/proxy-header.include;
+}

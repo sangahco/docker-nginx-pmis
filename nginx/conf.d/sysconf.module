@@ -1,0 +1,3 @@
+location /sysconf/ {
+    alias /usr/local/share/sysconf/;
+}
