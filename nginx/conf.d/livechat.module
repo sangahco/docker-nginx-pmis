@@ -1,7 +1,7 @@
 set $livechat_upstream livechat:3000;
 
 location /livechat/ {
-    rewrite ^/livechat/(.*) /$1 break;
+    #rewrite ^/livechat/(.*) /$1 break;
     proxy_pass http://$livechat_upstream;
     include conf.d/proxy-header.include;
 }

@@ -42,6 +42,7 @@ services:
     - CLIENT_AUTH_ENABLED=true
     - CLIENT_AUTH_HOST=nginx
     - CLIENT_AUTH_PATH=/
+    - SERVER_WEBROOT=/livechat
 
   upload:
     image: sangah/pmis-fileupload
