@@ -40,8 +40,7 @@ services:
     image: livechat
     environment: 
     - CLIENT_AUTH_ENABLED=true
-    - CLIENT_AUTH_HOST=nginx
-    - CLIENT_AUTH_PATH=/
+    - CLIENT_AUTH_ENDPOINT=http://nginx/
     - SERVER_WEBROOT=/livechat
 
   upload:
