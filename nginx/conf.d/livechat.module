@@ -4,4 +4,6 @@ location /livechat/ {
     #rewrite ^/livechat/(.*) /$1 break;
     proxy_pass http://$livechat_upstream;
     include conf.d/proxy-header.include;
+
+    access_log  /var/log/nginx/access.log  main if=$loggable;
 }

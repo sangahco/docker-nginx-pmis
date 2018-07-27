@@ -1,3 +1,5 @@
 location /sysconf/ {
     alias /usr/local/share/sysconf/;
+
+    access_log  /var/log/nginx/access.log  main if=$loggable;
 }
