@@ -25,7 +25,7 @@ services:
 
   nginx:
     build: nginx
-    image: pmis-nginx
+    #image: sangah/pmis-nginx
     ports:
     - "80:80"
     - "443:443"
@@ -37,7 +37,7 @@ services:
     - SSL_ENABLED
 
   livechat:
-    image: livechat
+    image: sangah/livechat
     environment: 
     - CLIENT_AUTH_ENABLED=true
     - CLIENT_AUTH_ENDPOINT=http://nginx/
@@ -54,6 +54,12 @@ services:
     volumes:
     - ngx:/etc/nginx/www
 
+  rabbitmq:
+    image: sangah/rabbitmq
+    hostname: rabbitmq # important for persistent queues
+    ports:
+    - "15672"
+    
 volumes:
   app:
   tmp:

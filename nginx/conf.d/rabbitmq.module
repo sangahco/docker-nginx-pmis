@@ -1,0 +1,12 @@
+set $rabbitmq_upstream rabbitmq:15672;
+
+location /rabbitmq-admin/ {
+    rewrite ^/rabbitmq-admin/(.*) /$1 break;
+    proxy_pass http://$rabbitmq_upstream;
+    
+    proxy_set_header Host $http_host;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+
+    access_log  /var/log/nginx/access.log  main if=$loggable;
+}
