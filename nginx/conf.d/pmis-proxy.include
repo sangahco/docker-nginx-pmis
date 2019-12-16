@@ -4,3 +4,7 @@ proxy_cache backcache;
 proxy_set_header Host $http_host;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection $connection_upgrade;
+
+# this get enabled if the application is served through ssl by this nginx
+# if the hub service is used, it should not be used, the hub provide this header already.
+#proxy_set_header X-Forwarded-Proto $scheme;

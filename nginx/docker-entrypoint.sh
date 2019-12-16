@@ -11,6 +11,7 @@ if [ "$SSL_ENABLED" == "1" ] && [ -f '/usr/share/nginx/conf.d/ssl.conf.bak' ]; t
     mv /usr/share/nginx/conf.d/ssl.conf.bak /usr/share/nginx/conf.d/ssl.conf
     sed -i 's/listen 80/listen 443 ssl http2/' /usr/share/nginx/conf.d/pmis.conf
     sed -i 's/#ssl_/ssl_/' /usr/share/nginx/conf.d/pmis.conf
+    sed -i 's/#proxy_set_header/proxy_set_header' /usr/share/nginx/conf.d/pmis-proxy.include
 fi
 
 if [ "$NAMESERVERS" == "" ]; then
