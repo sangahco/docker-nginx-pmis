@@ -1,30 +1,25 @@
 version: "2"
 
 services:
+
   was:
     image: registry.sangah.com/stnd-pmis
     volumes:
     - app:/usr/local/webapp
     - tmp:/tmp
-    ports:
-    - "${JPDA_PORT}:8000"
     environment: 
     - DB_URL
     - DB_PASSWORD
     - DB_USERNAME
     - MACHINE_HOST
-    - JPDA_ADDRESS=8000
-    - JPDA_TRANSPORT=dt_socket
-    command: ["catalina.sh", "jpda", "run"]
 
   nginx:
     build: nginx
-    #image: sangah/pmis-nginx
     ports:
     - "80:80"
     - "443:443"
     volumes:
-    - app:/var/www
+    - ./www:/var/www
     - $SSL_CERT:/usr/share/nginx/ssl/nginx.crt
     - $SSL_KEY:/usr/share/nginx/ssl/nginx.key
     environment: 
