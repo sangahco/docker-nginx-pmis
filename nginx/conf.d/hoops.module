@@ -1,0 +1,11 @@
+set $hoops_upstream hoops;
+
+location /hoops/ {
+    proxy_pass http://$hoops_upstream;
+    
+    proxy_set_header Host $http_host;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+
+    access_log  /var/log/nginx/access.log  main if=$loggable;
+}
