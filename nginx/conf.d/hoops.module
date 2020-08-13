@@ -1,7 +1,8 @@
 set $hoops_upstream hoops-viewer;
 
 location /hoops/ {
-    proxy_pass http://$hoops_upstream/;
+    #rewrite ^/hoops/(.*) /$1 break;
+    proxy_pass http://hoops-viewer/;
     
     proxy_set_header Host $http_host;
     proxy_set_header Upgrade $http_upgrade;
