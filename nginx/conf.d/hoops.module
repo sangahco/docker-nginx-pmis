@@ -1,4 +1,4 @@
-set $hoops_upstream hoops;
+set $hoops_upstream hoops-viewer;
 
 location /hoops/ {
     proxy_pass http://$hoops_upstream;
