@@ -1,5 +1,6 @@
 proxy_pass http://tomcat;
 proxy_cache backcache;
+proxy_read_timeout 300;
 
 proxy_set_header Host $http_host;
 proxy_set_header Upgrade $http_upgrade;
